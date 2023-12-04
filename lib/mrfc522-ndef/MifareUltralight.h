@@ -18,16 +18,16 @@
 class MifareUltralight
 {
     public:
-        MifareUltralight(MFRC522 *nfcShield);
+        MifareUltralight(MFRC522 * nfcShield);
         ~MifareUltralight();
         NfcTag read();
-        boolean write(NdefMessage& ndefMessage);
+        boolean write(NdefMessage & ndefMessage);
         boolean clean();
     private:
-        MFRC522 *nfc;
+        MFRC522 * nfc;
         boolean isUnformatted();
         uint16_t readTagSize();
-        void findNdefMessage(uint16_t *messageLength, uint16_t *ndefStartIndex);
+        void findNdefMessage(uint16_t * messageLength, uint16_t * ndefStartIndex);
         uint16_t calculateBufferSize(uint16_t messageLength, uint16_t ndefStartIndex);
 };
 

@@ -10,10 +10,8 @@
 
 #include <Arduino.h>
 
-#ifdef NDEF_USE_SERIAL
-void PrintHex(const byte *data, const long numBytes);
-void PrintHexChar(const byte *data, const long numBytes);
-void DumpHex(const byte *data, const long numBytes, const int blockSize);
-#endif
+void PrintHex(const byte * data, const long numBytes);
+void PrintHexChar(const byte * data, const long numBytes);
+void DumpHex(const byte * data, const long numBytes, const int blockSize);
 
 #endif

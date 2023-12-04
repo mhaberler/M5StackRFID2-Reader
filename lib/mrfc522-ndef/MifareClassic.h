@@ -1,9 +1,6 @@
 #ifndef MifareClassic_h
 #define MifareClassic_h
 
-// Comment out next line to remove Mifare Classic and save memory
-#define NDEF_SUPPORT_MIFARE_CLASSIC
-
 #ifdef NDEF_SUPPORT_MIFARE_CLASSIC
 
 //#define MIFARE_CLASSIC_DEBUG 1
@@ -20,17 +17,20 @@
 class MifareClassic
 {
     public:
-        MifareClassic(MFRC522 *nfcShield);
+        MifareClassic(MFRC522 * nfcShield, const MFRC522::MIFARE_Key & key)
+            : _nfcShield(nfcShield), _key(key) {};
         ~MifareClassic();
         NfcTag read();
-        bool write(NdefMessage& ndefMessage);
+        bool write(NdefMessage & ndefMessage);
         bool formatNDEF();
         bool formatMifare();
     private:
-        MFRC522* _nfcShield;
+        MFRC522 * _nfcShield;
         int getBufferSize(int messageLength);
-        int getNdefStartIndex(byte *data);
-        bool decodeTlv(byte *data, int *messageLength, int *messageStartIndex);
+        int getNdefStartIndex(byte * data);
+        bool decodeTlv(byte * data, int * messageLength, int * messageStartIndex);
+        const MFRC522::MIFARE_Key & _key;
+
 };
 
 #endif
