@@ -8,8 +8,11 @@ bool NfcAdapter::tagPresent()
     if(!(shield->PICC_IsNewCardPresent() && shield->PICC_ReadCardSerial())) {
         return false;
     }
-
     MFRC522::PICC_Type piccType = (MFRC522::PICC_Type)shield->PICC_GetType(shield->uid.sak);
+
+    Serial.printf("new card sak=0x%x type %s\n", shield->uid.sak, shield->PICC_GetTypeName(piccType));
+
+
     return ((piccType == MFRC522::PICC_TYPE_MIFARE_1K) || (piccType == MFRC522::PICC_TYPE_MIFARE_UL));
 }
 
