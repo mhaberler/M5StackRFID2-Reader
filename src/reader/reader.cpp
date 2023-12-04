@@ -51,17 +51,6 @@ void loop()
         Serial.print("PICC type: ");
         Serial.println(mfrc522.PICC_GetTypeName(piccType));
 
-        // have UUID in mfrc522.uid.uidByte, could map to custom keys here
-        switch(piccType) {
-            case MFRC522::PICC_TYPE_MIFARE_MINI:
-            case MFRC522::PICC_TYPE_MIFARE_1K:
-            case MFRC522::PICC_TYPE_MIFARE_4K:
-                // nfc.setKeys(keya, keyb);
-                break;
-            default:
-                break;
-        }
-
         // Show Uid
         NfcTag tag = nfc.read();
 
